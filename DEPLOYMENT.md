@@ -19,38 +19,40 @@ The deployment system works as follows:
 
 ## Setup Instructions
 
-### 1. PythonAnywhere Initial Setup
+### 1. PythonAnywhere Setup
 
-#### 1.1 Clone Your Repository
-
-Open a Bash console on PythonAnywhere and run:
+#### 1.1 Clone Repository
 
 ```bash
-cd ~
-git clone https://github.com/YOUR_USERNAME/timstaxonomy.git
-cd timstaxonomy
+cd /home/timstaxonomy
+git clone https://github.com/yourusername/timstaxonomy.git mysite
+cd mysite
 ```
 
 #### 1.2 Create Virtual Environment
 
 ```bash
-mkvirtualenv --python=/usr/bin/python3.10 timstaxonomy
+cd /home/timstaxonomy
+mkvirtualenv timstaxonomy --python=python3.10
+```
+
+#### 1.3 Install Dependencies
+
+```bash
+cd /home/timstaxonomy/mysite
+workon timstaxonomy
 pip install -r requirements.txt
 ```
 
 #### 1.3 Configure Environment Variables
 
 Create a `.env` file in your project directory:
+#### 1.4 Create Environment File
+
+Create a `.env` file in the project root (`/home/timstaxonomy/mysite/.env`):
 
 ```bash
-cd ~/timstaxonomy
-nano .env
-```
-
-Add the following content (replace with a secure random string):
-
-```
-WEBHOOK_SECRET=your-secure-random-string-here
+WEBHOOK_SECRET=your_generated_secret_here
 FLASK_ENV=production
 ```
 
@@ -71,14 +73,14 @@ Save and exit (Ctrl+X, then Y, then Enter).
 
 #### 1.5 Configure WSGI File
 
-Click on the WSGI configuration file link (e.g., `/var/www/yourusername_pythonanywhere_com_wsgi.py`) and replace its contents with:
+Click on the WSGI configuration file link (`/var/www/timstaxonomy_pythonanywhere_com_wsgi.py`) and replace its contents with:
 
 ```python
 import sys
 import os
 
 # Add your project directory to the sys.path
-project_home = '/home/yourusername/timstaxonomy'
+project_home = '/home/timstaxonomy/mysite'
 if project_home not in sys.path:
     sys.path = [project_home] + sys.path
 
@@ -90,32 +92,27 @@ load_dotenv(os.path.join(project_home, '.env'))
 from app import app as application
 ```
 
-**Important:** Replace `yourusername` with your actual PythonAnywhere username.
-
 #### 1.6 Configure Virtual Environment
 
 In the Web tab, set the **Virtualenv** path to:
 ```
-/home/yourusername/.virtualenvs/timstaxonomy
+/home/timstaxonomy/.virtualenvs/timstaxonomy
 ```
 
 #### 1.7 Configure Static Files
 
 Add a static files mapping:
 - URL: `/static/`
-- Directory: `/home/yourusername/timstaxonomy/static/`
+- Directory: `/home/timstaxonomy/mysite/static/`
 
 #### 1.8 Reload the Web App
 
 Click the green **Reload** button at the top of the Web tab.
 
-#### 1.9 Make deploy.sh Executable
-
-In a Bash console:
+#### 1.10 Make Deploy Script Executable
 
 ```bash
-cd ~/timstaxonomy
-chmod +x deploy.sh
+chmod +x /home/timstaxonomy/mysite/deploy.sh
 ```
 
 ### 2. GitHub Repository Setup
@@ -132,7 +129,7 @@ chmod +x deploy.sh
 
 **Secret 2:**
 - Name: `PYTHONANYWHERE_URL`
-- Value: `https://yourusername.pythonanywhere.com` (replace with your actual URL)
+- Value: `https://timstaxonomy.pythonanywhere.com`
 
 #### 2.2 Commit and Push
 
@@ -208,7 +205,7 @@ cat ~/deployment.log
 **Solution:**
 - Verify WSGI file path in `deploy.sh` matches your actual file
 - Manually reload from PythonAnywhere Web tab
-- Check the WSGI file path is `/var/www/yourusername_pythonanywhere_com_wsgi.py`
+- Check the WSGI file path is `/var/www/timstaxonomy_pythonanywhere_com_wsgi.py`
 
 ### GitHub Actions Workflow Fails
 

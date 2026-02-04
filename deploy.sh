@@ -1,12 +1,12 @@
 #!/bin/bash
 
-# PythonAnywhere Deployment Script
-# This script pulls the latest code, updates dependencies, and reloads the app
+# PythonAnywhere Auto-Deployment Script
+# This script is triggered by the webhook endpoint in app.py
 
 set -e  # Exit on any error
 
 # Configuration
-PROJECT_DIR="$HOME/timstaxonomy"
+PROJECT_DIR="/home/timstaxonomy/mysite"
 VENV_DIR="$HOME/.virtualenvs/timstaxonomy"
 LOG_FILE="$HOME/deployment.log"
 
@@ -38,7 +38,7 @@ log "Dependencies updated successfully"
 
 # Find and touch WSGI file to reload the app
 # PythonAnywhere WSGI file is typically at /var/www/<username>_pythonanywhere_com_wsgi.py
-WSGI_FILE="/var/www/${USER}_pythonanywhere_com_wsgi.py"
+WSGI_FILE="/var/www/timstaxonomy_pythonanywhere_com_wsgi.py"
 
 if [ -f "$WSGI_FILE" ]; then
     log "Touching WSGI file to reload app: $WSGI_FILE"
