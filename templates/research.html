@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>Research Papers - TIMS Taxonomy | Educational Framework Studies</title>
+    <meta name="title" content="Research Papers - TIMS Taxonomy | Educational Framework Studies">
+    <meta name="description"
+        content="Explore peer-reviewed research papers on the TIMS Taxonomy learning framework. Discover studies on cognitive patterns, technology integration, and assessment tools in modern education.">
+    <meta name="keywords"
+        content="TIMS Taxonomy, educational research, learning framework, cognitive patterns, educational technology, assessment tools, peer-reviewed papers">
+    <meta name="author" content="TIMS Taxonomy Research Team">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://timstaxonomy.com/research">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://timstaxonomy.com/research">
+    <meta property="og:title" content="Research Papers - TIMS Taxonomy | Educational Framework Studies">
+    <meta property="og:description"
+        content="Explore peer-reviewed research papers on the TIMS Taxonomy learning framework. Discover studies on cognitive patterns, technology integration, and assessment tools.">
+    <meta property="og:image" content="https://timstaxonomy.com/static/images/research-og.jpg">
+    <meta property="og:site_name" content="TIMS Taxonomy">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://timstaxonomy.com/research">
+    <meta property="twitter:title" content="Research Papers - TIMS Taxonomy">
+    <meta property="twitter:description"
+        content="Explore peer-reviewed research papers on the TIMS Taxonomy learning framework.">
+    <meta property="twitter:image" content="https://timstaxonomy.com/static/images/research-og.jpg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "TIMS Taxonomy Research Papers",
+      "description": "Collection of peer-reviewed research papers on the TIMS Taxonomy educational framework",
+      "url": "https://timstaxonomy.com/research",
+      "publisher": {
+        "@type": "Organization",
+        "name": "TIMS Taxonomy",
+        "url": "https://timstaxonomy.com"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "itemListElement": [
+          {% for paper in papers %}
+          {
+            "@type": "ScholarlyArticle",
+            "position": {{ loop.index }},
+            "headline": "{{ paper.title }}",
+            "author": {
+              "@type": "Person",
+              "name": "{{ paper.author }}"
+            },
+            "datePublished": "{{ paper.date }}",
+            "description": "{{ paper.excerpt }}",
+            "url": "https://timstaxonomy.com/research/{{ paper.slug }}"
+          }{% if not loop.last %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tims.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/research.css') }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="tims-header">
+        <nav class="tims-nav" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <a href="/" aria-label="TIMS Taxonomy Home">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TIMS Logo" width="20%"
+                            height="20%">
+                    </a>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/#overview">Overview</a></li>
+                <li><a href="/#letters">Framework</a></li>
+                <li><a href="/#team">Team</a></li>
+                <li><a href="/#creator">Creator</a></li>
+                <li><a href="/research" aria-current="page">Research</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">Research Papers</span>
+                <meta itemprop="position" content="2" />
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Research Hero Section -->
+        <section class="research-hero">
+            <div class="research-hero-content">
+                <h1>Research Papers</h1>
+                <p class="research-hero-subtitle">Peer-Reviewed Studies on the TIMS Taxonomy Framework</p>
+                <p class="research-hero-description">
+                    Explore our collection of academic research papers examining the effectiveness, implementation,
+                    and impact of the TIMS Taxonomy in educational settings worldwide.
+                </p>
+            </div>
+        </section>
+
+        <!-- Research Grid -->
+        <section class="research-section" aria-labelledby="research-heading">
+            <div class="research-container">
+                <div class="research-header">
+                    <h2 id="research-heading">Published Research</h2>
+                    <p class="research-count">{{ papers|length }} papers available</p>
+                </div>
+
+                <div class="research-grid" role="list">
+                    {% for paper in papers %}
+                    <article class="research-card" role="listitem" itemscope
+                        itemtype="https://schema.org/ScholarlyArticle">
+                        <a href="{{ url_for('research_detail', slug=paper.slug) }}" class="research-card-link"
+                            aria-label="Read {{ paper.title }}">
+                            <div class="research-thumbnail" data-category="{{ paper.category }}">
+                                <div class="research-category-badge">{{ paper.category }}</div>
+                            </div>
+
+                            <div class="research-content">
+                                <time class="research-date" datetime="{{ paper.date }}" itemprop="datePublished">
+                                    <i class="far fa-calendar" aria-hidden="true"></i>
+                                    {{ paper.date }}
+                                </time>
+
+                                <h3 class="research-title" itemprop="headline">{{ paper.title }}</h3>
+
+                                <p class="research-author" itemprop="author" itemscope
+                                    itemtype="https://schema.org/Person">
+                                    <i class="fas fa-user" aria-hidden="true"></i>
+                                    <span itemprop="name">{{ paper.author }}</span>
+                                </p>
+
+                                <p class="research-excerpt" itemprop="description">{{ paper.excerpt }}</p>
+
+                                <div class="research-meta">
+                                    <span class="research-stat" title="Citations">
+                                        <i class="fas fa-quote-right" aria-hidden="true"></i>
+                                        {{ paper.content.citations }} citations
+                                    </span>
+                                    <span class="research-stat" title="Downloads">
+                                        <i class="fas fa-download" aria-hidden="true"></i>
+                                        {{ paper.content.downloads }} downloads
+                                    </span>
+                                </div>
+
+                                <span class="research-read-more">
+                                    Read Full Paper <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                                </span>
+                            </div>
+                        </a>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tims-footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About TIMS</h4>
+                <p>A modern educational framework designed to enhance learning through structured cognitive processes.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/#overview">Overview</a></li>
+                    <li><a href="/#letters">Framework</a></li>
+                    <li><a href="/#team">Team</a></li>
+                    <li><a href="/research">Research</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/research">Research Papers</a></li>
+                    <li><a href="#">Implementation Guide</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TIMS Taxonomy Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/tims.js') }}"></script>
+</body>
+
+</html>

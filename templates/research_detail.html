@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>{{ paper.title }} | TIMS Taxonomy Research</title>
+    <meta name="title" content="{{ paper.title }} | TIMS Taxonomy Research">
+    <meta name="description" content="{{ paper.excerpt }}">
+    <meta name="keywords"
+        content="TIMS Taxonomy, {{ paper.category }}, {{ paper.author }}, educational research, learning framework">
+    <meta name="author" content="{{ paper.author }}">
+    <meta name="robots" content="index, follow">
+    <meta name="citation_title" content="{{ paper.title }}">
+    <meta name="citation_author" content="{{ paper.author }}">
+    <meta name="citation_publication_date" content="{{ paper.date }}">
+    <link rel="canonical" href="https://timstaxonomy.com/research/{{ paper.slug }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://timstaxonomy.com/research/{{ paper.slug }}">
+    <meta property="og:title" content="{{ paper.title }}">
+    <meta property="og:description" content="{{ paper.excerpt }}">
+    <meta property="og:image" content="https://timstaxonomy.com/{{ paper.thumbnail }}">
+    <meta property="og:site_name" content="TIMS Taxonomy">
+    <meta property="article:published_time" content="{{ paper.date }}">
+    <meta property="article:author" content="{{ paper.author }}">
+    <meta property="article:section" content="{{ paper.category }}">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://timstaxonomy.com/research/{{ paper.slug }}">
+    <meta property="twitter:title" content="{{ paper.title }}">
+    <meta property="twitter:description" content="{{ paper.excerpt }}">
+    <meta property="twitter:image" content="https://timstaxonomy.com/{{ paper.thumbnail }}">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ScholarlyArticle",
+      "headline": "{{ paper.title }}",
+      "description": "{{ paper.excerpt }}",
+      "abstract": "{{ paper.content.abstract }}",
+      "author": {
+        "@type": "Person",
+        "name": "{{ paper.author }}"
+      },
+      "datePublished": "{{ paper.date }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "TIMS Taxonomy",
+        "url": "https://timstaxonomy.com"
+      },
+      "url": "https://timstaxonomy.com/research/{{ paper.slug }}",
+      "image": "https://timstaxonomy.com/{{ paper.thumbnail }}",
+      "keywords": "{{ paper.category }}, TIMS Taxonomy, educational research",
+      "citation": {
+        "@type": "CreativeWork",
+        "name": "{{ paper.title }}",
+        "author": "{{ paper.author }}",
+        "datePublished": "{{ paper.date }}"
+      },
+      "interactionStatistic": [
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/DownloadAction",
+          "userInteractionCount": {{ paper.content.downloads }}
+        },
+        {
+          "@type": "InteractionCounter",
+          "interactionType": "https://schema.org/QuoteAction",
+          "userInteractionCount": {{ paper.content.citations }}
+        }
+      ]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/tims.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/research.css') }}">
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="tims-header">
+        <nav class="tims-nav" role="navigation" aria-label="Main navigation">
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <a href="/" aria-label="TIMS Taxonomy Home">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TIMS Logo" width="20%"
+                            height="20%">
+                    </a>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="/#overview">Overview</a></li>
+                <li><a href="/#letters">Framework</a></li>
+                <li><a href="/#team">Team</a></li>
+                <li><a href="/#creator">Creator</a></li>
+                <li><a href="/research">Research</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb Navigation -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/">
+                    <span itemprop="name">Home</span>
+                </a>
+                <meta itemprop="position" content="1" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <a itemprop="item" href="/research">
+                    <span itemprop="name">Research</span>
+                </a>
+                <meta itemprop="position" content="2" />
+            </li>
+            <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                <span itemprop="name">{{ paper.title[:50] }}...</span>
+                <meta itemprop="position" content="3" />
+            </li>
+        </ol>
+    </nav>
+
+    <!-- Main Content -->
+    <main id="main-content">
+        <article class="research-detail" itemscope itemtype="https://schema.org/ScholarlyArticle">
+            <!-- Paper Header -->
+            <header class="paper-header">
+                <div class="paper-header-content">
+                    <span class="paper-category">{{ paper.category }}</span>
+                    <h1 class="paper-title" itemprop="headline">{{ paper.title }}</h1>
+
+                    <div class="paper-meta">
+                        <div class="paper-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <i class="fas fa-user" aria-hidden="true"></i>
+                            <span itemprop="name">{{ paper.author }}</span>
+                        </div>
+                        <time class="paper-date" datetime="{{ paper.date }}" itemprop="datePublished">
+                            <i class="far fa-calendar" aria-hidden="true"></i>
+                            {{ paper.date }}
+                        </time>
+                        <div class="paper-stats">
+                            <span title="Citations">
+                                <i class="fas fa-quote-right" aria-hidden="true"></i>
+                                {{ paper.content.citations }} citations
+                            </span>
+                            <span title="Downloads">
+                                <i class="fas fa-download" aria-hidden="true"></i>
+                                {{ paper.content.downloads }} downloads
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Social Share Buttons -->
+                    <div class="paper-share">
+                        <span class="share-label">Share:</span>
+                        <a href="https://twitter.com/intent/tweet?text={{ paper.title }}&url=https://timstaxonomy.com/research/{{ paper.slug }}"
+                            target="_blank" rel="noopener noreferrer" class="share-btn share-twitter"
+                            aria-label="Share on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://www.facebook.com/sharer/sharer.php?u=https://timstaxonomy.com/research/{{ paper.slug }}"
+                            target="_blank" rel="noopener noreferrer" class="share-btn share-facebook"
+                            aria-label="Share on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://timstaxonomy.com/research/{{ paper.slug }}&title={{ paper.title }}"
+                            target="_blank" rel="noopener noreferrer" class="share-btn share-linkedin"
+                            aria-label="Share on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <button class="share-btn share-copy" onclick="copyToClipboard()" aria-label="Copy link">
+                            <i class="fas fa-link"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Paper Content -->
+            <div class="paper-content">
+                <!-- Abstract -->
+                <section class="paper-section" aria-labelledby="abstract-heading">
+                    <h2 id="abstract-heading">Abstract</h2>
+                    <p class="paper-abstract" itemprop="abstract">{{ paper.content.abstract }}</p>
+                </section>
+
+                <!-- Main Sections -->
+                {% for section in paper.content.sections %}
+                <section class="paper-section" aria-labelledby="section-{{ loop.index }}">
+                    <h2 id="section-{{ loop.index }}">{{ section.heading }}</h2>
+                    <p>{{ section.content }}</p>
+                </section>
+                {% endfor %}
+
+                <!-- Images/Figures -->
+                {% if paper.content.images %}
+                <section class="paper-section paper-figures" aria-labelledby="figures-heading">
+                    <h2 id="figures-heading">Figures</h2>
+                    {% for image in paper.content.images %}
+                    <figure class="paper-figure">
+                        <div class="figure-placeholder" data-category="{{ paper.category }}">
+                            <i class="fas fa-image"></i>
+                            <p>Figure {{ loop.index }}</p>
+                        </div>
+                        <figcaption>Figure {{ loop.index }}: Visual representation from {{ paper.title }}</figcaption>
+                    </figure>
+                    {% endfor %}
+                </section>
+                {% endif %}
+
+                <!-- Citation -->
+                <section class="paper-section paper-citation" aria-labelledby="citation-heading">
+                    <h2 id="citation-heading">How to Cite</h2>
+                    <div class="citation-box">
+                        <p class="citation-text">
+                            {{ paper.author }} ({{ paper.date[:4] }}). <em>{{ paper.title }}</em>.
+                            TIMS Taxonomy Research Series. Retrieved from https://timstaxonomy.com/research/{{
+                            paper.slug }}
+                        </p>
+                        <button class="btn-copy-citation" onclick="copyCitation()" aria-label="Copy citation">
+                            <i class="fas fa-copy"></i> Copy Citation
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Download Section -->
+                <section class="paper-section paper-download">
+                    <div class="download-box">
+                        <h3>Download Full Paper</h3>
+                        <p>Access the complete research paper in PDF format</p>
+                        <button class="btn btn-primary btn-download">
+                            <i class="fas fa-file-pdf"></i>
+                            Download PDF
+                        </button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Related Papers -->
+            <aside class="related-papers" aria-labelledby="related-heading">
+                <h2 id="related-heading">Related Research</h2>
+                <p class="related-subtitle">Explore more papers on similar topics</p>
+                <a href="/research" class="btn btn-outline">
+                    View All Research Papers
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </aside>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <footer class="tims-footer" role="contentinfo">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About TIMS</h4>
+                <p>A modern educational framework designed to enhance learning through structured cognitive processes.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="/#overview">Overview</a></li>
+                    <li><a href="/#letters">Framework</a></li>
+                    <li><a href="/#team">Team</a></li>
+                    <li><a href="/research">Research</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/research">Research Papers</a></li>
+                    <li><a href="#">Implementation Guide</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TIMS Taxonomy Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/tims.js') }}"></script>
+    <script>
+        function copyToClipboard() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Link copied to clipboard!');
+            });
+        }
+
+        function copyCitation() {
+            const citation = document.querySelector('.citation-text').textContent;
+            navigator.clipboard.writeText(citation).then(() => {
+                alert('Citation copied to clipboard!');
+            });
+        }
+    </script>
+</body>
+
+</html>

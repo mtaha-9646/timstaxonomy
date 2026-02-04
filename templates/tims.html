@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIMS Taxonomy - Learning Framework</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="static/css/tims.css?v=8">
+</head>
+
+<body>
+    <!-- Decorative Background Elements -->
+    <div class="bg-decoration bg-circle-1"></div>
+    <div class="bg-decoration bg-circle-2"></div>
+    <div class="bg-decoration bg-wave-1"></div>
+    <div class="bg-decoration bg-wave-2"></div>
+
+    <!-- Header -->
+    <header class="tims-header">
+        <nav class="tims-nav">
+            <div class="nav-brand">
+                <div class="nav-logo">
+                    <a href="/">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="TIMS Logo" width="20%"
+                            height="20%">
+                    </a>
+                </div>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#letters">Framework</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#creator">Creator</a></li>
+                <li><a href="/research">Research</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="overview">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-brain"></i>
+                <span>Educational Framework</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="letter-t">T</span><span class="letter-i">I</span><span class="letter-m">M</span><span
+                    class="letter-s">S</span>
+                <span class="title-text">Taxonomy</span>
+            </h1>
+            <p class="hero-subtitle">A Modern Framework for Effective Learning</p>
+            <p class="hero-description">
+                The TIMS Taxonomy provides a structured approach to learning that emphasizes
+                task understanding, information gathering, meaning-making, and knowledge sharing.
+                Designed for modern education, it guides learners through a comprehensive cognitive journey.
+            </p>
+            <div class="hero-buttons">
+                <a href="#letters" class="btn btn-primary">
+                    <span>Explore Framework</span>
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+                <a href="#team" class="btn btn-outline">
+                    <span>Meet the Team</span>
+                    <i class="fas fa-users"></i>
+                </a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="tims-illustration">
+                <div class="illustration-letter" style="--delay: 0s;" data-letter="T">
+                    <img src="static/images/T.webp" alt="T" class="letter-image">
+                </div>
+                <div class="illustration-letter" style="--delay: 0.1s;" data-letter="I">
+                    <img src="static/images/ladder.webp" alt="I" class="letter-image">
+                </div>
+                <div class="illustration-letter" style="--delay: 0.2s;" data-letter="M">
+                    <img src="static/images/M.webp" alt="M" class="letter-image">
+                </div>
+                <div class="illustration-letter" style="--delay: 0.3s;" data-letter="S">
+                    <img src="static/images/S.webp" alt="S" class="letter-image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Letters Section -->
+    <section class="letters-section" id="letters">
+        <div class="section-header">
+            <h2 class="section-title">The TIMS Taxonomy</h2>
+            <p class="section-subtitle">Click on each letter to explore the four stages of learning</p>
+        </div>
+
+        <div class="letters-container" role="tablist" aria-label="TIMS Framework Levels">
+            <!-- Letter T - Task -->
+            <div class="letter-card is-active" role="tab" tabindex="0" aria-selected="true" aria-expanded="true"
+                data-letter="T" data-tone="blue">
+                <div class="letter-inner">
+                    <div class="letter-header">
+                        <div class="letter-icon">T</div>
+                        <div class="letter-pill">TRY</div>
+                    </div>
+                    <div class="letter-content" role="tabpanel">
+                        <h3 class="content-title">Try</h3>
+                        <p class="content-description">
+                            Reflect, review, and practice to build confidence. Develop resilience and perseverance
+                            through rehearsal, preparation, and consolidation of new concepts.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letter I - Information -->
+            <div class="letter-card" role="tab" tabindex="0" aria-selected="false" aria-expanded="false" data-letter="I"
+                data-tone="yellow">
+                <div class="letter-inner">
+                    <div class="letter-header">
+                        <div class="letter-icon">I</div>
+                        <div class="letter-pill">IMPROVE</div>
+                    </div>
+                    <div class="letter-content" role="tabpanel">
+                        <h3 class="content-title">Improve</h3>
+                        <p class="content-description">
+                            Make mistakes, ask questions, and design solutions. Challenge your understanding through
+                            curiosity, problem-solving, and connecting concepts to real-world applications.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letter M - Meaning -->
+            <div class="letter-card" role="tab" tabindex="0" aria-selected="false" aria-expanded="false" data-letter="M"
+                data-tone="pink">
+                <div class="letter-inner">
+                    <div class="letter-header">
+                        <div class="letter-icon">M</div>
+                        <div class="letter-pill">MEASURE</div>
+                    </div>
+                    <div class="letter-content" role="tabpanel">
+                        <h3 class="content-title">Measure</h3>
+                        <p class="content-description">
+                            Assess yourself and peers using WAGOLL models. Track progress through feedback loops,
+                            respond to input, and validate your understanding against benchmarks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Letter S - Sharing -->
+            <div class="letter-card" role="tab" tabindex="0" aria-selected="false" aria-expanded="false" data-letter="S"
+                data-tone="green">
+                <div class="letter-inner">
+                    <div class="letter-header">
+                        <div class="letter-icon">S</div>
+                        <div class="letter-pill">STRETCH</div>
+                    </div>
+                    <div class="letter-content" role="tabpanel">
+                        <h3 class="content-title">Stretch</h3>
+                        <p class="content-description">
+                            Push boundaries through research and innovation. Take creative risks, challenge assumptions,
+                            and teach peers while demonstrating tenacity and self-belief.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section" id="team">
+        <div class="section-header">
+            <h2 class="section-title">Our Team</h2>
+            <p class="section-subtitle">The dedicated educators and researchers behind TIMS</p>
+        </div>
+
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="static/images/team-sarah.png" alt="Dr. Sarah Mitchell" class="team-photo">
+                </div>
+                <h3>Dr. Sarah Mitchell</h3>
+                <p class="team-role">Lead Researcher</p>
+                <p class="team-bio">
+                    Educational psychologist specializing in cognitive learning frameworks
+                    and instructional design.
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="static/images/team-james.png" alt="Prof. James Chen" class="team-photo">
+                </div>
+                <h3>Prof. James Chen</h3>
+                <p class="team-role">Curriculum Specialist</p>
+                <p class="team-bio">
+                    Expert in curriculum development with 20+ years of experience in
+                    educational framework implementation.
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="static/images/team-emily.png" alt="Dr. Emily Rodriguez" class="team-photo">
+                </div>
+                <h3>Dr. Emily Rodriguez</h3>
+                <p class="team-role">Technology Integration</p>
+                <p class="team-bio">
+                    Focuses on integrating educational technology with learning frameworks
+                    for enhanced student outcomes.
+                </p>
+            </div>
+
+            <div class="team-card">
+                <div class="team-avatar">
+                    <img src="static/images/team-michael.png" alt="Dr. Michael Thompson" class="team-photo">
+                </div>
+                <h3>Dr. Michael Thompson</h3>
+                <p class="team-role">Assessment Expert</p>
+                <p class="team-bio">
+                    Specializes in developing assessment tools that align with modern
+                    learning taxonomies and frameworks.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Honorary Creator Section -->
+    <section class="creator-section" id="creator">
+        <div class="creator-container">
+            <div class="creator-image">
+                <div class="creator-photo">
+                    <img src="static/images/drtim.jpg" alt="Dr. Tim Hughes" class="creator-photo-img">
+                </div>
+                <div class="creator-badge">
+                    <i class="fas fa-award"></i>
+                    <span>Framework Creator</span>
+                </div>
+            </div>
+            <div class="creator-content">
+                <h2 class="creator-title">Honoring the Visionary</h2>
+                <h3 class="creator-name">Dr. Timothy John Hughes</h3>
+                <p class="creator-subtitle">Creator of the TIMS Taxonomy</p>
+
+                <div class="creator-bio">
+                    <p>
+                        Dr. Timothy John Hughes dedicated his career to understanding how people learn most
+                        effectively.
+                        In 2015, he introduced the TIMS Taxonomy, a revolutionary framework that emphasizes the
+                        interconnected nature of task understanding, information processing, meaning creation, and
+                        knowledge sharing.
+                    </p>
+                    <p>
+                        His work has transformed educational practices worldwide, providing educators with a practical
+                        and comprehensive approach to designing learning experiences that truly engage students and
+                        promote deep understanding.
+                    </p>
+                </div>
+
+                <div class="creator-timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">2010</div>
+                        <div class="timeline-content">
+                            <h4>Initial Research</h4>
+                            <p>Began studying cognitive learning patterns in modern education</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2015</div>
+                        <div class="timeline-content">
+                            <h4>TIMS Framework Published</h4>
+                            <p>Introduced the TIMS Taxonomy to the educational community</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-year">2020</div>
+                        <div class="timeline-content">
+                            <h4>Global Adoption</h4>
+                            <p>Framework adopted by educational institutions in 50+ countries</p>
+                        </div>
+                    </div>
+                </div>
+
+                <blockquote class="creator-quote">
+                    <i class="fas fa-quote-left"></i>
+                    <p>
+                        "True learning is not just about acquiring information—it's about understanding
+                        the task, gathering knowledge, making meaning, and sharing insights with others.
+                        This cycle creates lasting understanding."
+                    </p>
+                    <cite>— Dr. Timothy John Hughes</cite>
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="tims-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About TIMS</h4>
+                <p>A modern educational framework designed to enhance learning through structured cognitive processes.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#overview">Overview</a></li>
+                    <li><a href="#letters">Framework</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#creator">Creator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="/research">Research Papers</a></li>
+                    <li><a href="#">Implementation Guide</a></li>
+                    <li><a href="#">Case Studies</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 TIMS Taxonomy Framework. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="static/js/tims.js"></script>
+</body>
+
+</html>
