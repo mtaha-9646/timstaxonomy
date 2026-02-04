@@ -10,7 +10,8 @@
 .breadcrumb {
     background: white;
     padding: 1rem 2rem;
-    margin-top: 80px;
+    margin-top: 0;
+    padding-top: calc(80px + 1rem);
     border-bottom: 1px solid #E5E7EB;
 }
 
@@ -56,7 +57,7 @@
 .research-hero {
     background: linear-gradient(135deg, #F0F9FF 0%, #FFF5E6 100%);
     padding: 6rem 2rem 4rem;
-    margin-top: 80px;
+    margin-top: 0;
     text-align: center;
 }
 

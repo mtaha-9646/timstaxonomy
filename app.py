@@ -7,7 +7,7 @@ import os
 import hmac
 import hashlib
 import subprocess
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, send_from_directory
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -22,6 +22,34 @@ WEBHOOK_SECRET = os.getenv('WEBHOOK_SECRET', 'change-me-in-production')
 def index():
     """Serve the TIMS Taxonomy page"""
     return render_template('tims.html')
+
+@app.route('/robots.txt')
+def robots():
+    """Serve robots.txt file"""
+    return send_from_directory('static', 'robots.txt', mimetype='text/plain')
+
+@app.route('/sitemap.xml')
+def sitemap():
+    """Generate sitemap.xml"""
+    from flask import make_response
+    
+    pages = [
+        {'loc': '/', 'priority': '1.0', 'changefreq': 'weekly'},
+        {'loc': '/research', 'priority': '0.9', 'changefreq': 'weekly'},
+    ]
+    
+    # Add all research papers
+    for paper in RESEARCH_PAPERS:
+        pages.append({
+            'loc': f'/research/{paper["slug"]}',
+            'priority': '0.8',
+            'changefreq': 'monthly'
+        })
+    
+    sitemap_xml = render_template('sitemap.xml', pages=pages, base_url='https://timstaxonomy.pythonanywhere.com')
+    response = make_response(sitemap_xml)
+    response.headers['Content-Type'] = 'application/xml'
+    return response
 
 # Research Papers Data
 RESEARCH_PAPERS = [

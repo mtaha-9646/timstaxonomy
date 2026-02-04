@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /webhook/
+
+# Sitemap
+Sitemap: https://timstaxonomy.pythonanywhere.com/sitemap.xml
