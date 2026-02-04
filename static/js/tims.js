@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (mobileMenuBtn && navMenu) {
         mobileMenuBtn.addEventListener('click', function () {
             navMenu.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
 
             // Toggle icon
             const icon = this.querySelector('i');
@@ -32,10 +33,24 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.forEach(link => {
             link.addEventListener('click', function () {
                 navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
                 const icon = mobileMenuBtn.querySelector('i');
                 icon.classList.remove('fa-times');
                 icon.classList.add('fa-bars');
             });
+        });
+
+        // Close menu when clicking on overlay (outside menu)
+        document.addEventListener('click', function (e) {
+            if (navMenu.classList.contains('active') &&
+                !navMenu.contains(e.target) &&
+                !mobileMenuBtn.contains(e.target)) {
+                navMenu.classList.remove('active');
+                document.body.classList.remove('menu-open');
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
         });
     }
 
@@ -85,9 +100,22 @@ document.addEventListener('DOMContentLoaded', function () {
         card.focus({ preventScroll: true });
     }
 
-    // Click to expand
-    letterCards.forEach(card => {
-        card.addEventListener('click', () => activateCard(card));
+    // Click to expand (desktop) or scroll to next (mobile)
+    letterCards.forEach((card, index) => {
+        card.addEventListener('click', () => {
+            // Check if we're in mobile slider mode (820px or less)
+            if (window.innerWidth <= 820) {
+                // On mobile, scroll this card into view (for peeking card navigation)
+                card.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'start'
+                });
+            } else {
+                // On desktop, expand the card
+                activateCard(card);
+            }
+        });
 
         // Keyboard support
         card.addEventListener('keydown', (e) => {

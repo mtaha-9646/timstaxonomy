@@ -18,18 +18,48 @@ jobs:
           WEBHOOK_SECRET: ${{ secrets.WEBHOOK_SECRET }}
           PYTHONANYWHERE_URL: ${{ secrets.PYTHONANYWHERE_URL }}
         run: |
+          # Validate environment variables
+          if [ -z "$WEBHOOK_SECRET" ]; then
+            echo "Error: WEBHOOK_SECRET is not set"
+            exit 1
+          fi
+          
+          if [ -z "$PYTHONANYWHERE_URL" ]; then
+            echo "Error: PYTHONANYWHERE_URL is not set"
+            exit 1
+          fi
+          
+          echo "Deploying to: $PYTHONANYWHERE_URL"
+          
           # Create payload
           PAYLOAD='{"ref":"refs/heads/main","repository":{"name":"timstaxonomy"}}'
           
           # Generate HMAC signature
           SIGNATURE=$(echo -n "$PAYLOAD" | openssl dgst -sha256 -hmac "$WEBHOOK_SECRET" | sed 's/^.* //')
           
-          # Send webhook request
-          curl -X POST \
+          echo "Sending webhook request..."
+          
+          # Send webhook request with error handling
+          HTTP_CODE=$(curl -X POST \
             -H "Content-Type: application/json" \
             -H "X-Hub-Signature-256: sha256=$SIGNATURE" \
             -d "$PAYLOAD" \
-            "$PYTHONANYWHERE_URL/webhook/deploy"
+            -w "%{http_code}" \
+            -o /tmp/response.txt \
+            -s \
+            "$PYTHONANYWHERE_URL/webhook/deploy")
+          
+          echo "HTTP Status Code: $HTTP_CODE"
+          echo "Response:"
+          cat /tmp/response.txt
+          
+          # Check if request was successful
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "Deployment webhook sent successfully!"
+          else
+            echo "Deployment webhook failed with status code: $HTTP_CODE"
+            exit 1
+          fi
       
       - name: Deployment status
-        run: echo "Deployment webhook sent successfully!"
+        run: echo "Deployment completed!"
